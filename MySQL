@@ -1,0 +1,24 @@
+sudo apt install mysql-server -y
+sudo mysql -u root -p
+CREATE DATABASE wordpress;
+CREATE USER 'wordpressuser'@'localhost' IDENTIFIED BY 'a_strong_password_here';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+
+
+##EXPLAIN THE CODE ABOVE
+
+**CREATE DATABASE wordpress**; 
+>> This makes a new database called wordpress. Think of it as a special storage space where WordPress will keep everything it needs.
+
+**CREATE USER 'wordpressuser'@'localhost' IDENTIFIED BY 'a_strong_password_here';**
+>> Adds a new MySQL user account named wordpressuser.
+>> 'localhost' means this user can only log in from the same server where the database is hosted (your EC2 instance).
+>> 'a_strong_password_here' is the password for that user (you should replace it with something strong and unique).
+
+**GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser'@'localhost';**
+>> This grants the new user full control (create, read, update, delete) over all tables inside the wordpress database.
+
+**FLUSH PRIVILEGES;**
+>> MySQL stores privileges in memory. This command reloads them so the new user and permissions become active right away.
